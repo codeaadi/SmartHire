@@ -16,3 +16,37 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.email
+    
+    
+    
+    # CANDIDATE PROFILE 
+    
+class CandidateProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15,blank=True)
+    skills =models.TextField(blank=True)
+    experience = models.IntegerField(default=0)
+    resume = models.FileField(upload_to='resume/',null=True,blank=True)
+    
+    
+    def __str__(self):
+        return self.user.email   
+    
+    
+    
+    
+    # COMPANY PROFILE
+    
+    
+class CompanyProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    company_name =models.CharField(max_length=150)
+    website = models.URLField(blank=True)
+    description = models.TextField(blank=True)
+    location = models.CharField(max_length=150,blank=True)
+    
+    
+    
+    def __str__(self):
+        return self.company_name    
+    
