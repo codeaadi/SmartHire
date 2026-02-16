@@ -1,10 +1,10 @@
 from rest_framework import generics, permissions
 from .models import Application
-from .serializers import ApplicationSerializer
+from .serializers import ApplicationSerialiser
 
 
 class ApplyJobView(generics.ListCreateAPIView):
-    serializer_class = ApplicationSerializer
+    serializer_class = ApplicationSerialiser
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -15,7 +15,7 @@ class ApplyJobView(generics.ListCreateAPIView):
 
 
 class RecruiterApplicationsView(generics.ListAPIView):
-    serializer_class = ApplicationSerializer
+    serializer_class = ApplicationSerialiser
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -24,6 +24,6 @@ class RecruiterApplicationsView(generics.ListAPIView):
 
 class UpdateApplicationStatusView(generics.UpdateAPIView):
     queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
+    serializer_class = ApplicationSerialiser
     permission_classes = [permissions.IsAuthenticated]
 
