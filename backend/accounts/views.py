@@ -6,6 +6,8 @@ from .serializers import RegisterSerializer
 from rest_framework.permissions import IsAuthenticated
 from .models import CompanyProfile, CandidateProfile
 from .serializers import CompanyProfileSerializer, CandidateProfileSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 
 class RegisterView(APIView):
@@ -24,6 +26,8 @@ class RegisterView(APIView):
 
         return Response(serializer.errors, status=404)
 
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 class candidateProfileView(APIView):
     permission_classes = [IsAuthenticated]
